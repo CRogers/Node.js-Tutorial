@@ -6,11 +6,12 @@ start = (route, handle) ->
 		path = url.parse(req.url).pathname
 		console.log "Request for " + path + " recieved."
 
-		route handle, path
-
 		res.writeHead 200, {"Content-Type": "text/plain"}
-		res.write "Hello, World"
+		content =  route handle, path
+		res.write content
 		res.end
+		console.log "lo hi"
+		return
 	
 	http.createServer(onRequest).listen 8888
 	console.log "Server has started"
